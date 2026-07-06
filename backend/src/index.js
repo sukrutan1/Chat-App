@@ -35,7 +35,7 @@ const frontendDist = path.join(__dirname, "../../frontend/dist");
 app.use(express.static(frontendDist));
 
 // Catch-all: redirect unknown routes to index.html for React Router
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(frontendDist, "index.html"));
 });
 
