@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="https://socialify.git.ci/sukrutan1/Chat-App/image?description=1&font=Inter&name=1&owner=1&pattern=Solid&theme=Dark" alt="Chat-App Banner" width="800" />
+</div>
+
+<br/>
+
 # Real-Time Chat Application
 
 A full-stack, real-time messaging application built with the MERN stack (MongoDB, Express, React, Node.js) and Socket.io. This application allows users to create accounts, authenticate securely, and engage in real-time conversations with image-sharing capabilities.
@@ -14,21 +20,22 @@ A full-stack, real-time messaging application built with the MERN stack (MongoDB
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Framework**: React (Bootstrapped with Vite)
-- **State Management**: Zustand
-- **Styling**: TailwindCSS & DaisyUI
-- **Routing**: React Router DOM
-- **Real-Time Communication**: Socket.io-client
-- **HTTP Client**: Axios
-- **Icons & Notifications**: Lucide React, React Hot Toast
+<p>
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" />
+  <img src="https://img.shields.io/badge/daisyui-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white" alt="DaisyUI" />
+  <img src="https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101" alt="Socket.io" />
+</p>
 
 ### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB with Mongoose ORM
-- **Real-Time Communication**: Socket.io
-- **Authentication**: JWT & Cookie Parser
-- **Image Storage**: Cloudinary
+<p>
+  <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB" alt="Express.js" />
+  <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" alt="JWT" />
+  <img src="https://img.shields.io/badge/cloudinary-%238626C3.svg?style=for-the-badge&logo=cloudinary&logoColor=white" alt="Cloudinary" />
+</p>
 
 ## 📂 Project Structure
 
@@ -64,8 +71,8 @@ Chat-App/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/chat-app.git
-cd chat-app
+git clone https://github.com/sukrutan1/Chat-App.git
+cd Chat-App
 ```
 
 ### 2. Setup the Backend
@@ -93,7 +100,6 @@ Open a new terminal, navigate to the frontend directory, and install dependencie
 cd frontend
 npm install
 ```
-*(Optional)* If you have environment variables for the frontend, create a `.env` file in the `frontend` directory based on `.env.example`.
 
 ### 4. Run the Application
 You will need to run both the backend and frontend development servers.
@@ -111,11 +117,3 @@ npm run dev
 ```
 
 The frontend will typically run on `http://localhost:5173` and communicate with the backend on `http://localhost:5000`.
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
-
-## 📝 License
-
-This project is open-source and available under the [ISC License](LICENSE).
