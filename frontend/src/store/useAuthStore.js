@@ -16,7 +16,7 @@ export const useAuthStore = create((set) => ({
       const res = await axiosInstance.get("/auth/check");
       set({ authUser: res.data });
 
-      // Oturum geçerliyse socket'i bağla
+      // Connect socket if session is valid
       const socket = initSocket(res.data._id);
       socket.on("getOnlineUsers", (userIds) => {
         set({ onlineUsers: userIds });
@@ -34,14 +34,14 @@ export const useAuthStore = create((set) => ({
     try {
       const res = await axiosInstance.post("/auth/signup", data);
       set({ authUser: res.data });
-      toast.success("Hesap başarıyla oluşturuldu!");
+      toast.success("Account created successfully!");
 
       const socket = initSocket(res.data._id);
       socket.on("getOnlineUsers", (userIds) => {
         set({ onlineUsers: userIds });
       });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Kayıt olurken hata oluştu.");
+      toast.error(error.response?.data?.message || "Failed to create account.");
     } finally {
       set({ isSigningUp: false });
     }
@@ -52,14 +52,14 @@ export const useAuthStore = create((set) => ({
     try {
       const res = await axiosInstance.post("/auth/login", data);
       set({ authUser: res.data });
-      toast.success("Başarıyla giriş yapıldı!");
+      toast.success("Logged in successfully!");
 
       const socket = initSocket(res.data._id);
       socket.on("getOnlineUsers", (userIds) => {
         set({ onlineUsers: userIds });
       });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Giriş yapılırken hata oluştu.");
+      toast.error(error.response?.data?.message || "Failed to log in.");
     } finally {
       set({ isLoggingIn: false });
     }
@@ -70,9 +70,9 @@ export const useAuthStore = create((set) => ({
       await axiosInstance.post("/auth/logout");
       set({ authUser: null, onlineUsers: [] });
       disconnectSocket();
-      toast.success("Başarıyla çıkış yapıldı.");
+      toast.success("Logged out successfully.");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Çıkış yapılırken hata oluştu.");
+      toast.error(error.response?.data?.message || "Failed to log out.");
     }
   },
 
@@ -81,9 +81,9 @@ export const useAuthStore = create((set) => ({
     try {
       const res = await axiosInstance.put("/auth/update-profile", data);
       set({ authUser: res.data });
-      toast.success("Profil güncellendi!");
+      toast.success("Profile updated!");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Profil güncellenirken hata oluştu.");
+      toast.error(error.response?.data?.message || "Failed to update profile.");
     } finally {
       set({ isUpdatingProfile: false });
     }

@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
-// Development: ayrı backend sunucusu
-// Production:  aynı sunucu (Express + Socket.IO)
+// Development: separate backend server
+// Production:  same server (Express + Socket.IO)
 const BASE_URL = import.meta.env.MODE === "development"
   ? "http://localhost:5001"
   : "/";
@@ -9,7 +9,7 @@ const BASE_URL = import.meta.env.MODE === "development"
 let socket = null;
 
 /**
- * Socket bağlantısını başlatır (login/checkAuth sonrasında çağrılır)
+ * Initializes the socket connection (called after login/checkAuth)
  */
 export const initSocket = (userId) => {
   if (socket?.connected) return socket;
@@ -24,12 +24,12 @@ export const initSocket = (userId) => {
 };
 
 /**
- * Mevcut socket instance'ını döndürür
+ * Returns the current socket instance
  */
 export const getSocket = () => socket;
 
 /**
- * Socket bağlantısını keser (logout sonrasında çağrılır)
+ * Disconnects the socket (called on logout)
  */
 export const disconnectSocket = () => {
   if (socket?.connected) {

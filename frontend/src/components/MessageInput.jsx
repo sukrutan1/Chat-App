@@ -13,7 +13,7 @@ const MessageInput = () => {
     const file = e.target.files[0];
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      toast.error("Lütfen geçerli bir resim dosyası seçin.");
+      toast.error("Please select a valid image file.");
       return;
     }
     const reader = new FileReader();
@@ -39,19 +39,19 @@ const MessageInput = () => {
       setImagePreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
-      console.error("Mesaj gönderilemedi:", error);
+      console.error("Failed to send message:", error);
     }
   };
 
   return (
     <div className="p-4 w-full">
-      {/* Resim Önizleme */}
+      {/* Image preview */}
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
           <div className="relative">
             <img
               src={imagePreview}
-              alt="Önizleme"
+              alt="Preview"
               className="size-20 object-cover rounded-lg border border-zinc-700"
             />
             <button
@@ -65,13 +65,13 @@ const MessageInput = () => {
         </div>
       )}
 
-      {/* Giriş Formu */}
+      {/* Message form */}
       <form onSubmit={handleSendMessage} className="flex items-center gap-2">
         <div className="flex-1 flex gap-2">
           <input
             type="text"
             className="w-full input input-bordered rounded-lg input-sm sm:input-md"
-            placeholder="Mesaj yaz..."
+            placeholder="Type a message..."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />

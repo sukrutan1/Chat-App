@@ -17,23 +17,23 @@ const Navbar = () => {
             <h1 className="text-lg font-bold">ChatApp</h1>
           </Link>
 
-          {/* Sağ Menü */}
+          {/* Right menu */}
           <div className="flex items-center gap-2">
             <Link to="/settings" className="btn btn-sm gap-2 btn-ghost">
               <Settings className="size-4" />
-              <span className="hidden sm:inline">Ayarlar</span>
+              <span className="hidden sm:inline">Settings</span>
             </Link>
 
             {authUser && (
               <>
                 <Link to="/profile" className="btn btn-sm gap-2 btn-ghost">
                   <User className="size-5" />
-                  <span className="hidden sm:inline">Profil</span>
+                  <span className="hidden sm:inline">Profile</span>
                 </Link>
 
                 <button className="btn btn-sm gap-2 btn-ghost" onClick={logout}>
                   <LogOut className="size-5" />
-                  <span className="hidden sm:inline">Çıkış</span>
+                  <span className="hidden sm:inline">Logout</span>
                 </button>
               </>
             )}

@@ -37,7 +37,7 @@ const Sidebar = () => {
       <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
           <Users className="size-6" />
-          <span className="font-medium hidden lg:block">Kişiler</span>
+          <span className="font-medium hidden lg:block">Contacts</span>
         </div>
         <div className="mt-3 hidden lg:flex items-center gap-2">
           <label className="cursor-pointer flex items-center gap-2">
@@ -47,19 +47,19 @@ const Sidebar = () => {
               onChange={(e) => setShowOnlineOnly(e.target.checked)}
               className="checkbox checkbox-sm"
             />
-            <span className="text-sm">Yalnızca çevrimiçiler</span>
+            <span className="text-sm">Online only</span>
           </label>
-          <span className="text-xs text-zinc-500">({users.length} kişi)</span>
+          <span className="text-xs text-zinc-500">({users.length} contacts)</span>
         </div>
       </div>
 
-      {/* Kullanıcı Listesi */}
+      {/* User List */}
       <div className="overflow-y-auto w-full py-3">
         {isUsersLoading ? (
           <SidebarSkeleton />
         ) : filteredUsers.length === 0 ? (
           <div className="text-center text-zinc-500 py-4 text-sm">
-            Kullanıcı bulunamadı
+            No users found
           </div>
         ) : (
           filteredUsers.map((user) => (
@@ -83,11 +83,11 @@ const Sidebar = () => {
                 )}
               </div>
 
-              {/* Kullanıcı Bilgileri – yalnızca geniş sidebar'da göster */}
+              {/* User info — only visible on wide sidebar */}
               <div className="hidden lg:block text-left min-w-0">
                 <div className="font-medium truncate">{user.fullName}</div>
                 <div className="text-sm text-zinc-400">
-                  {onlineUsers.includes(user._id) ? "Çevrimiçi" : "Çevrimdışı"}
+                  {onlineUsers.includes(user._id) ? "Online" : "Offline"}
                 </div>
               </div>
             </button>

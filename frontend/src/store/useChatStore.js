@@ -16,7 +16,7 @@ export const useChatStore = create((set, get) => ({
       const res = await axiosInstance.get("/message/users");
       set({ users: res.data });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Kullanıcılar yüklenemedi.");
+      toast.error(error.response?.data?.message || "Failed to load users.");
     } finally {
       set({ isUsersLoading: false });
     }
@@ -28,7 +28,7 @@ export const useChatStore = create((set, get) => ({
       const res = await axiosInstance.get(`/message/${userId}`);
       set({ messages: res.data });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Mesajlar yüklenemedi.");
+      toast.error(error.response?.data?.message || "Failed to load messages.");
     } finally {
       set({ isMessagesLoading: false });
     }
@@ -40,13 +40,13 @@ export const useChatStore = create((set, get) => ({
       const res = await axiosInstance.post(`/message/${selectedUser._id}`, messageData);
       set({ messages: [...messages, res.data] });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Mesaj gönderilemedi.");
+      toast.error(error.response?.data?.message || "Failed to send message.");
     }
   },
 
   /**
-   * Aktif sohbet için socket'ten gelen yeni mesajları dinler.
-   * ChatContainer mount olurken çağrılır.
+   * Subscribes to incoming messages from the active conversation.
+   * Called when ChatContainer mounts.
    */
   subscribeToMessages: () => {
     const { selectedUser } = get();
@@ -56,7 +56,7 @@ export const useChatStore = create((set, get) => ({
     if (!socket) return;
 
     socket.on("newMessage", (newMessage) => {
-      // Yalnızca aktif sohbetten gelen mesajları ekle
+      // Only add messages that belong to the active conversation
       const isFromSelectedUser =
         newMessage.senderId === selectedUser._id ||
         newMessage.receiverId === selectedUser._id;
@@ -68,8 +68,8 @@ export const useChatStore = create((set, get) => ({
   },
 
   /**
-   * Socket listener'ını temizler.
-   * ChatContainer unmount olurken çağrılır.
+   * Removes the socket message listener.
+   * Called when ChatContainer unmounts.
    */
   unsubscribeFromMessages: () => {
     const socket = getSocket();

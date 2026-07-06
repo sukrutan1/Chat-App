@@ -54,7 +54,7 @@ export const sendMessage = async (req, res) => {
     });
     await newMessage.save();
 
-    // Real-time: alıcı çevrimiçiyse mesajı anlık gönder
+    // Real-time: emit the new message to the receiver if they are online
     const receiverSocketId = getReceiverSocketId(receiverId);
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);

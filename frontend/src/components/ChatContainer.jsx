@@ -25,7 +25,7 @@ const ChatHeader = () => {
           <div>
             <h3 className="font-medium">{selectedUser.fullName}</h3>
             <p className="text-sm text-base-content/70">
-              {isOnline ? "Çevrimiçi" : "Çevrimdışı"}
+              {isOnline ? "Online" : "Offline"}
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ const ChatContainer = () => {
     }
   }, [selectedUser?._id, getMessages]);
 
-  // Real-time mesaj aboneliği
+  // Subscribe to real-time messages
   useEffect(() => {
     subscribeToMessages();
     return () => unsubscribeFromMessages();
@@ -91,7 +91,7 @@ const ChatContainer = () => {
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.length === 0 && (
             <div className="text-center text-base-content/50 py-10 text-sm">
-              Henüz mesaj yok. İlk mesajı gönderin!
+              No messages yet. Send the first one!
             </div>
           )}
           {messages.map((message) => {
@@ -109,7 +109,7 @@ const ChatContainer = () => {
                           ? authUser.profilePic || "/avatar.png"
                           : selectedUser.profilePic || "/avatar.png"
                       }
-                      alt="Profil"
+                      alt="Profile"
                     />
                   </div>
                 </div>
@@ -122,7 +122,7 @@ const ChatContainer = () => {
                   {message.image && (
                     <img
                       src={message.image}
-                      alt="Mesaj resmi"
+                      alt="Message image"
                       className="sm:max-w-[200px] rounded-md mb-2"
                     />
                   )}

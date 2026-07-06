@@ -12,7 +12,7 @@ const io = new Server(server, {
   },
 });
 
-// { userId: socketId }
+// Map to track connected users: { userId: socketId }
 const userSocketMap = {};
 
 export function getReceiverSocketId(userId) {
@@ -20,7 +20,7 @@ export function getReceiverSocketId(userId) {
 }
 
 io.on("connection", (socket) => {
-  console.log("Yeni bağlantı:", socket.id);
+  console.log("New connection:", socket.id);
 
   const userId = socket.handshake.query.userId;
 
@@ -28,11 +28,11 @@ io.on("connection", (socket) => {
     userSocketMap[userId] = socket.id;
   }
 
-  // Tüm client'lara çevrimiçi kullanıcı listesini gönder
+  // Broadcast updated online users list to all clients
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
   socket.on("disconnect", () => {
-    console.log("Bağlantı kesildi:", socket.id);
+    console.log("Connection closed:", socket.id);
     delete userSocketMap[userId];
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });
