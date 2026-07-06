@@ -1,6 +1,10 @@
 import { io } from "socket.io-client";
 
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+// Development: ayrı backend sunucusu
+// Production:  aynı sunucu (Express + Socket.IO)
+const BASE_URL = import.meta.env.MODE === "development"
+  ? "http://localhost:5001"
+  : "/";
 
 let socket = null;
 
