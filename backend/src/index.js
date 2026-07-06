@@ -30,16 +30,14 @@ if (NODE_ENV !== "production") {
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
 
-// Production: serve the built frontend static files
-if (NODE_ENV === "production") {
-  const frontendDist = path.join(__dirname, "../../frontend/dist");
-  app.use(express.static(frontendDist));
+// Serve the built frontend static files
+const frontendDist = path.join(__dirname, "../../frontend/dist");
+app.use(express.static(frontendDist));
 
-  // Catch-all: redirect unknown routes to index.html for React Router
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(frontendDist, "index.html"));
-  });
-}
+// Catch-all: redirect unknown routes to index.html for React Router
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendDist, "index.html"));
+});
 
 const listen = async () => {
   try {
