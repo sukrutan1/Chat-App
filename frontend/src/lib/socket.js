@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const BASE_URL = "http://localhost:5001";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
 let socket = null;
 
